@@ -55,6 +55,48 @@ def notifySlack(String Status = 'STARTED',String customMessage=" ")
     slackSend (color: colorCode, message: customMessage)
             
 }
+def rollback(int server){
+
+    def res = ""
+
+    try{
+
+        timeout(time: 12000, unit: 'SECONDS') {
+
+            input message: 'Click Proceed to Rollback Automatically', submitter: ''
+
+        }       
+
+        for(int RollBackFromServer=server;RollBackFromServer>=0;RollBackFromServer--){
+
+            stage("REVERT ")
+
+            timeout(time: 12000, unit: 'SECONDS') {
+
+                input message: 'Click Proceed to RollOver', submitter: ''
+
+            }
+            
+            timeout(time: 12000, unit: 'SECONDS') {
+
+                input message: 'Click Proceed to AddNode', submitter: ''
+
+            }
+
+        }
+
+    }
+
+    catch(Exception ex) {
+
+        echo res
+
+        echo 'RollBack Unsuccessful'
+
+        throw ex
+
+    }               
+}
 node {
             env.WorkSpace = 'C:\\Users\\Administrator\\Desktop'
             dir("${env.WorkSpace}") {
@@ -93,9 +135,9 @@ node {
                     throw ex
 
                 }
+               stage 'DeployStatic'
+                
                 for(currentStaticServer=0;currentStaticServer < 5;currentStaticServer++){
-
-                    stage 'DeployStatic'
 
                     try {
 
@@ -126,6 +168,7 @@ node {
                 }
 
             }
+                
          }
 }
 
