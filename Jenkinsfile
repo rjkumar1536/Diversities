@@ -117,9 +117,7 @@ node {
 
                     }
 
-                }
-
-                finally{
+                finally {
 
                     echo "finally"
 
