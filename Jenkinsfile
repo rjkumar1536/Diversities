@@ -93,7 +93,7 @@ node {
                     throw ex
 
                 }
-                for(currentStaticServer=0;currentStaticServer < staticServers.size();currentStaticServer++){
+                for(currentStaticServer=0;currentStaticServer < 5;currentStaticServer++){
 
                     stage 'DeployStatic'
 
