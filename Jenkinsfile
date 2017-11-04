@@ -168,7 +168,156 @@ node {
                 }
 
             }
+              for(currentServer=0;currentServer<serverDetails.size();currentServer++){
+
+            try{
+
+                stage("RemoveNode")
+
+                timeout(time: 12000, unit: 'SECONDS') {
+
+                    input message: 'Click Proceed to RemoveNode', submitter: ''
+
+                }
+
+                node{
+
+                    echo "node removed"                                    
+
+                }
+
+            }   
+
+            catch(FlowInterruptedException ex){
+
+                echo 'Its aborted..now I cant do anything.....Removing node cant be done'
+
+                rollback(currentServer)
+
+            }
+
+            catch (Exception ex){
+
+                echo "Some error in remove node" //need to check whether to rollback or not 
+
+                rollback(currentServer)
+
+                throw ex                    
+
+            }        
+
+            try{
+
+                stage("DeployCode")
+
+                timeout(time: 12000, unit: 'SECONDS'){
+
+                    input message: 'Click Proceed to DeployCode', submitter: ''
+
+                }
+
+            }
+
+            catch(FlowInterruptedException ex){
+
+                echo "Aborted by user or time out"
+
+                rollback(currentServer)
+
+                throw ex
+
+            }
+
+            catch (Exception ex){
+
+                echo "exception occured"
+
+                rollback(currentServer)
+
+                throw ex
+
+            }
+
+            stage("API Testing")
+
+             try{
+
+                node{
+
+                    echo "Api Testing"
+
+                 }
+
+            }
+
+            catch (Exception ex){
+
+                echo "exception occured"
+
+                rollback(currentServer)
+
+                throw ex
+
+             }
+
+            try{
+
+                stage("Warmup")
+
+                echo "warming up"
+
+            }
+
+            catch (Exception ex){
+
+                echo "exception occured"
+
+                rollback(currentServer)
+
+                throw ex
+
+            }    
+
+            try{
+
+                stage("AddNode")
+
+                timeout(time: 12000, unit: 'SECONDS'){
+
+                    input message: 'Click Proceed to AddNode', submitter: ''
+
+                }
+
+                node{
+
+                    echo "Node Added To LB"
+
+                }
+
+            }
+
+            catch(FlowInterruptedException ex){
+
+                echo "Aborted by user or time out"
+
+                rollback(currentServer)
+
+                throw ex
+
+            }
+
+            catch (Exception ex){
+
+                echo "exception occured"
+
+                rollback(currentServer)
+
+                throw ex
+
+            }                        
+
+        }
                 
-         }
+     }
 }
 
