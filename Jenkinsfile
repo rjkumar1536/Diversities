@@ -1,5 +1,5 @@
 node {
-            env.WorkSpace = 'C:\Users\Administrator\Desktop'
+            env.WorkSpace = 'C:\\Users\\Administrator\\Desktop'
             dir("${env.WorkSpace}") {
 
                 stage 'CHECKOUT'
