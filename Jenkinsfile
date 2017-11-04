@@ -123,8 +123,6 @@ node {
 
                     echo "finally"
 
-                    Success or failure, always send notifications
-
                     notifySlack(currentBuild.result)
 
                 }
