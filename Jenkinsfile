@@ -93,6 +93,43 @@ node {
                     throw ex
 
                 }
+                for(currentStaticServer=0;currentStaticServer < staticServers.size();currentStaticServer++){
+
+                    stage 'DeployStatic'
+
+                    try {
+
+                        timeout(time: 12000, unit: 'SECONDS') {
+
+                            input message: 'Click Proceed to Deploy static content', submitter: ''                                        
+
+                        }
+
+                        
+
+                    }
+
+                    catch(Exception ex) {
+
+                       
+
+                        throw ex
+
+                    }
+
+                }
+
+                finally{
+
+                    echo "finally"
+
+                    Success or failure, always send notifications
+
+                    notifySlack(currentBuild.result)
+
+                }
+
             }
+         }
 }
 
