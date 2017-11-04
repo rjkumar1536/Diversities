@@ -169,7 +169,7 @@ node {
                 }
 
             }
-              for(currentServer=0;currentServer<serverDetails.size();currentServer++){
+              for(currentServer=0;currentServer<5;currentServer++){
 
             try{
 
