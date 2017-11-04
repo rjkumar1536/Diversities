@@ -1,10 +1,7 @@
 import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 def notifySlack(String Status = 'STARTED',String customMessage=" ")
-
 {
-
     // build status of null means successful
-
     Status =  Status ?: 'SUCCESSFUL'
 
     // Default values
