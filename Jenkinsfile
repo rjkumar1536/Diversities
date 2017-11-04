@@ -1,4 +1,4 @@
-/*def notifySlack(String Status = 'STARTED',String customMessage=" ")
+def notifySlack(String Status = 'STARTED',String customMessage=" ")
 
 {
 
@@ -54,7 +54,7 @@
 
     slackSend (color: colorCode, message: customMessage)
             
-}*/
+}
 node {
             env.WorkSpace = 'C:\\Users\\Administrator\\Desktop'
             dir("${env.WorkSpace}") {
@@ -77,7 +77,7 @@ node {
 
                 try {
 
-                    //notifySlack('STARTED')
+                    notifySlack('STARTED')
 
                     echo "hello"
 
