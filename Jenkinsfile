@@ -1,3 +1,4 @@
+import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 def notifySlack(String Status = 'STARTED',String customMessage=" ")
 
 {
