@@ -5,7 +5,6 @@ def notifySlack(String Status = 'STARTED',String customMessage=" ")
     Status =  Status ?: 'SUCCESSFUL'
 
     // Default values
-
     def colorName = 'RED'
 
     def colorCode = '#FF0000'
