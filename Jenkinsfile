@@ -93,6 +93,7 @@ def rollback(int server){
     }               
 }
 node {
+    lock('Production-pipeline'){
             env.WorkSpace = 'C:\\Users\\Administrator\\Desktop'
             dir("${env.WorkSpace}") {
 
@@ -314,5 +315,6 @@ node {
         }
                 
      }
+    }
 }
 
