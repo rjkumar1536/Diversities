@@ -3,7 +3,6 @@ def notifySlack(String Status = 'STARTED',String customMessage=" ")
 {
     // build status of null means successful
     Status =  Status ?: 'SUCCESSFUL'
-
     // Default values
     def colorName = 'RED'
 
